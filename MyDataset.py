@@ -130,81 +130,81 @@ if __name__=="__main__":
 #%%
 
 #%% 
-if __name__=="__main__":
-    img_size = 224
-    transform = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Resize(size=(img_size)),
-            transforms.CenterCrop(img_size)
-        ]
-    )
-    dataset = MyDataset(root_dir = './images', transform = transform)
+# if __name__=="__main__":
+#     img_size = 224
+#     transform = transforms.Compose(
+#         [
+#             transforms.ToTensor(),
+#             transforms.Resize(size=(img_size)),
+#             transforms.CenterCrop(img_size)
+#         ]
+#     )
+#     dataset = MyDataset(root_dir = './images', transform = transform)
     
-    print(Counter(dataset.labels_encoded))
-    print(Counter(dataset.labels))
+#     print(Counter(dataset.labels_encoded))
+#     print(Counter(dataset.labels))
     
-    train_loader = DataLoader(dataset = dataset, batch_size = 32, drop_last = True)
+#     train_loader = DataLoader(dataset = dataset, batch_size = 32, drop_last = True)
 
-    for epoch in range(1):
-        for images, labels in train_loader:
-            print(images.shape)
+#     for epoch in range(1):
+#         for images, labels in train_loader:
+#             print(images.shape)
     
-#%%
-if __name__=="__main__":
+# #%%
+# if __name__=="__main__":
 
-    x = [x for x, _ in dataset]
+#     x = [x for x, _ in dataset]
         
-    x_ = x.copy()
-    x = np.array(x)
-    # print(x.reshape((-1,x[0])))
-    c_li = []
-    for i, img in enumerate(x):
-        if img.shape[0] != 3:
-            c_li.append(i)
-            print(img.shape)
+#     x_ = x.copy()
+#     x = np.array(x)
+#     # print(x.reshape((-1,x[0])))
+#     c_li = []
+#     for i, img in enumerate(x):
+#         if img.shape[0] != 3:
+#             c_li.append(i)
+#             print(img.shape)
 
-#%%
+# #%%
 
-# for i in c_li:
-#     # print(dataset.path_li[i])
-#     os.remove(dataset.path_li[i])
+# # for i in c_li:
+# #     # print(dataset.path_li[i])
+# #     os.remove(dataset.path_li[i])
 
 
-#%%
-if __name__=="__main__":
+# #%%
+# if __name__=="__main__":
 
-    train_loader = DataLoader(dataset = dataset, batch_size = 32, drop_last = True)
+#     train_loader = DataLoader(dataset = dataset, batch_size = 32, drop_last = True)
 
-    for epoch in range(1):
-        for images, labels in train_loader:
-            print(images.shape)
+#     for epoch in range(1):
+#         for images, labels in train_loader:
+#             print(images.shape)
             
-    # train_ds, test_ds = train_test_split(dataset)
+#     # train_ds, test_ds = train_test_split(dataset)
     
-#%%
+# #%%
 
 
 
-#%% torch random split 이용해서 train test split (위에것 보다 훨씬 빠름)
-if __name__=="__main__":
-    dataset = MyDataset(root_dir = './images', transform = transform)
+# #%% torch random split 이용해서 train test split (위에것 보다 훨씬 빠름)
+# if __name__=="__main__":
+#     dataset = MyDataset(root_dir = './images', transform = transform)
 
-    train_ds, val_ds, test_ds = data_split(dataset, [0.7, 0.2, 0.1])
+#     train_ds, val_ds, test_ds = data_split(dataset, [0.7, 0.2, 0.1])
     
     
     
-#%%
-if __name__=="__main__":
-    num = 10
-    for i in range(num):
-        show_img(train_ds[i], num)
+# #%%
+# if __name__=="__main__":
+#     num = 10
+#     for i in range(num):
+#         show_img(train_ds[i], num)
         
 
-    # 클래스별 data 개수 세기
-    print(Counter(train_ds.dataset.labels))
-    print(Counter(dataset.labels))
-    print(class_ratio(val_ds))
+#     # 클래스별 data 개수 세기
+#     print(Counter(train_ds.dataset.labels))
+#     print(Counter(dataset.labels))
+#     print(class_ratio(val_ds))
     
     # for i in range(num):
     #     sample = dataset[i]
